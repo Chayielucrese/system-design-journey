@@ -11,6 +11,7 @@ For 12 weeks I'm following a plan: learn a topic, build something that shows it,
 
 ## The plan
 | Weeks | Topic |
+   |---|---|
 
 | 1 | Setup and the answer framework |
 | 2-3 | Foundations: HTTP, DNS, latency, estimates |
