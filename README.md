@@ -4,6 +4,8 @@ I'm a backend developer (Node.js, NestJS, MongoDB) learning system design from t
 
 For 12 weeks I'm following a plan: learn a topic, build something that shows it, measure what happened, and write it up. This repo holds everything I produce along the way.
 
+**Read it online:** [chayielucrese.github.io/system-design-journey](https://chayielucrese.github.io/system-design-journey/)
+
 ## What's inside
 - **Notes:** one page per week, in my own words
 - **Experiments:** small projects with before and after numbers (indexes, load balancing, caching, queues)
