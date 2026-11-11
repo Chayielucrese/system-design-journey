@@ -21,7 +21,7 @@ export default defineConfig({
       {
         text: 'Weeks',
         items: [
-          { text: 'Week 1: Setup', link: '/week-01-setup' }
+          { text: 'Week 1: framework', link: '/framework' }
         ]
       }
     ],
