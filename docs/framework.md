@@ -71,15 +71,16 @@ Typical things to consider:
 
 ## 2. Estimation
 
-Estimation defines **how big** the application is. This is where you estimate things like requests per second, queries per second and storage per year. The two numbers I focus on are:
+Estimation is how I work out how big the application will get. I estimate requests per second, queries per second and storage per year, starting from assumptions I state (for example, bookings per day).
 
-- **Latency**: the time it takes to process a request.
-- **Throughput**: the number of requests or queries the system can handle per second.
+From those numbers I set two targets:
 
-For example, for my booking app I want:
+- **Latency**: how long a request should take (for example, under 20 ms).
+- **Throughput**:  how many requests per second the system should handle, with room above the expected peak.
 
-- A request to take less than **20 ms** to process
-- The system to handle **1,000 requests or queries per second**
+For example, for my booking app:
+I estimate about **500** requests per second at peak, so I'm aiming to handle **1,000 **.
+
 
 ## 3. API
 
