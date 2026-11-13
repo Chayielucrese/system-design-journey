@@ -101,10 +101,10 @@ For example, a few admin endpoints:
 Here we identify the **entities**, their **main fields**, and the **relationships** between them.
 
 ::: tip ERD, not a Class Diagram
-At this stage, we are sketching an **Entity-Relationship Diagram (ERD)**—not an object-oriented class diagram. We aren't modeling methods, inheritance, or business logic yet; we are strictly mapping out what data gets stored, its primary/foreign keys, and how tables relate (`1:1`, `1:N`, `M:N`).
+At this stage, we are sketching an **Entity-Relationship Diagram (ERD)** not an object-oriented class diagram. We aren't modeling methods, inheritance, or business logic yet; we are strictly mapping out what data gets stored, its primary/foreign keys, and how tables relate (`1:1`, `1:N`, `M:N`).
 :::
 
-You don't need to draw this by hand—tools like **dbdiagram.io**, **Eraser.io**, **DrawSQL**, **Excalidraw**, or **Mermaid** make it fast to sketch and iterate on schemas.
+You don't need to draw this by hand-tools like **dbdiagram.io**, **Eraser.io**, **DrawSQL**, **Excalidraw**, or **Mermaid** make it fast to sketch and iterate on schemas.
 
 Beyond the diagram, you also need to justify your choice of database (e.g., SQL vs. NoSQL) and decide whether your access patterns require **joins**, **simple key-value lookups**, or **ACID transactions**.
 
@@ -134,34 +134,32 @@ A structured **component diagram** that breaks down internal modules, shared gua
 
 ## 6. Bottlenecks
 
-This part asks:
+This step is where we stress-test our design on paper by asking three critical questions:
 
-- What is slow?
-- What is a single point of failure?
-- What happens if two things happen at the same time?
+- **What is slow?** (Latency bottlenecks)
+- **What is a single point of failure?** (Reliability risks)
+- **What happens if two things occur at the exact same time?** (Concurrency issues)
 
-I split bottlenecks into two categories.
+::: tip Correctness vs. Performance
+Not all bottlenecks wait for high traffic. **Correctness bottlenecks** can break data integrity with just two users, while **performance bottlenecks** emerge gradually as load increases.
+:::
 
 ### Correctness bottlenecks
 
-These matter **even with few users**.
+These matter **even with low traffic**, because race conditions can corrupt your state.
 
-**Double booking (booking + availability).** Two customers book the same vehicle for the same time slot at the same moment. A check-then-insert flow isn't safe, because both checks can pass before either insert happens.
-
-Options to consider:
-
-- A Postgres transaction with a row lock
-- An exclusion constraint on the vehicle and time range
-- A short-lived Redis lock
+- **Example — Double booking:** Two customers try to reserve the same vehicle for the same time slot at the exact same moment. A standard "check-then-insert" query isn't safe here, because both checks can pass before either row is saved.
+- **How to solve it:**
+  - Use a PostgreSQL transaction with a **row-level lock** (`SELECT ... FOR UPDATE`).
+  - Enforce a database-level **exclusion constraint** on the vehicle ID and time range.
+  - Acquire a short-lived **distributed lock in Redis** before processing the booking.
 
 ### Performance bottlenecks
 
-These show up **as the system grows**.
+These surface **as users and data volume grow**, degrading response times.
 
-**Permission checks (auth and RBAC).** The guard runs on every request, and with roles plus user-level overrides that means several database reads each time.
-
-A fix: cache the resolved permissions per user in Redis, and clear that cache whenever roles change.
-
+- **Example — Permission checks (Auth & RBAC):** An authorization guard runs on every incoming request. Resolving user roles alongside user-level permission overrides requires multiple database reads per call, which quickly adds latency under load.
+- **How to solve it:** Cache each user's resolved permissions in **Redis** for fast in-memory lookups, and invalidate that cache key whenever their roles or overrides change.
 
 ## Wrapping up
 
