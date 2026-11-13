@@ -95,26 +95,40 @@ For example, a few admin endpoints:
 | Create a pricing plan | `POST /api/v1/admin/plans` |
 | View global financial metrics | `GET /api/v1/admin/dashboard/financials/overview` |
 
+
 ## 4. Data model
 
-Here we identify the **entities**, their **main fields** and the **relationships** between them.
+Here we identify the **entities**, their **main fields**, and the **relationships** between them.
 
-You also need to justify your choice of database, and decide whether you need joins, lookups or transactions.
+::: tip ERD, not a Class Diagram
+At this stage, we are sketching an **Entity-Relationship Diagram (ERD)**—not an object-oriented class diagram. We aren't modeling methods, inheritance, or business logic yet; we are strictly mapping out what data gets stored, its primary/foreign keys, and how tables relate (`1:1`, `1:N`, `M:N`).
+:::
 
-![The six parts of the framework](/.vitepress/theme/framing4.png)
+You don't need to draw this by hand—tools like **dbdiagram.io**, **Eraser.io**, **DrawSQL**, **Excalidraw**, or **Mermaid** make it fast to sketch and iterate on schemas.
+
+Beyond the diagram, you also need to justify your choice of database (e.g., SQL vs. NoSQL) and decide whether your access patterns require **joins**, **simple key-value lookups**, or **ACID transactions**.
+
+![Data model ERD](/.vitepress/theme/framing4.png)
 
 ## 5. Main components
 
-Here you identify the main components of the system and how they interact to do their job. I provide two diagrams:
+Here we identify the **building blocks** of the system (clients, API gateways, services, databases, caches, and queues) and how data flows between them to get the job done.
 
-1. **A sketch**: simple boxes and arrows, just to show the big picture.
-2. **A detailed diagram**: usually a component diagram, with much more detail than the sketch.
+::: tip Sketch first, refine second
+Start with a rough **boxes-and-arrows sketch** to map out the big picture and core request paths without getting lost in implementation details. Once the flow makes sense, it is advisable to draw a **component diagram** to explicitly identify all internal modules, infrastructure layers, and the **dependencies between them** (who calls whom, and what depends on what).
+:::
 
-**A sketch**
+You can create both quickly using tools like **Excalidraw**, **Eraser.io**, **draw.io (diagrams.net)**, **Lucidchart**, or **Mermaid**.
+
+### 1. High-level sketch
+
+A simple bird's-eye view showing the main entry points, core modules, and primary data store.
 
 ![High-level sketch](/.vitepress/theme/framing2.png)
 
-**Detailed**
+### 2. Detailed component diagram
+
+A structured **component diagram** that breaks down internal modules, shared guards/services, external providers, and the exact dependencies connecting them.
 
 ![Detailed component diagram](/.vitepress/theme/framing3.png)
 
