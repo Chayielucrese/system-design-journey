@@ -148,12 +148,11 @@ These show up **as the system grows**.
 
 A fix: cache the resolved permissions per user in Redis, and clear that cache whenever roles change.
 
-## Wrapping up
 
 ## Wrapping up
 
 Answering the framework doesn't require getting every number or box right on the first try. The goal is to force yourself to think about **scale, data flow, and failure modes** before writing a single line of code.
 
-Even a rough pass through these six steps uncovers critical edge cases—like double bookings or slow permission checks—that are far cheaper to fix on paper than in production.
+Even a rough pass through these six steps uncovers critical edge cases like double bookings or slow permission checks that are far cheaper to fix on paper than in production.
 
-The hardest part of this phase for me was **estimation**—knowing which numbers to pick and how to justify them. In **Part 2**, I'll dive into **back-of-the-envelope estimation** to work out realistic load numbers for my booking app and measure a baseline for one of its endpoints.
+The hardest part of this phase for me was **estimation** knowing which numbers to pick and how to justify them. In **Part 2**, I'll dive into **back-of-the-envelope estimation** to work out realistic load numbers for my booking app and measure a baseline for one of its endpoints.

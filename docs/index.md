@@ -4,11 +4,11 @@ layout: home
 hero:
   name: "System Design Journey"
   text: "Learning system design in public"
-  tagline: "A backend developer's 12-week path from building features to designing systems. One topic, one experiment and one page every week."
+  tagline: "My journey toward thinking through scale, data, and architecture before writing endpoints. One topic, one experiment and one page every week."
   actions:
     - theme: brand
-      text: Start with Week 1
-      link: /week-01-setup
+      text: Get Started
+      link: /framework.html
     - theme: alt
       text: View on GitHub
       link: https://github.com/Chayielucrese/system-design-journey
@@ -24,6 +24,6 @@ features:
 
 ## About this site
 
-I'm a backend developer working with Node.js, Express and NestJS, using PostgreSQL, MySQL and MongoDB. I also build mobile apps with Flutter from time to time. I know how to build features, but I want to learn how to design whole systems.
+I'm a backend developer working with Node.js, Express and NestJS, using PostgreSQL, and MongoDB. I also build mobile apps with Flutter from time to time. I know how to build features, but I want to learn how to design whole systems.
 
-For 12 weeks I'll learn a topic, build something that shows it, and publish what happened here, mistakes included. I'm a beginner on this subject, so if you spot something wrong, please tell me.
+I will be learning how to design systems before writing endpoints. For each topic, I study the concept, apply it in practice, and share my notes here, mistakes included. Corrections and feedback are always welcome.
